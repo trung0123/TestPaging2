@@ -19,7 +19,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-
     }
 }
 
@@ -29,8 +28,9 @@ task clean(type: Delete) {
 
 ext {
     archComponentsVersion = '2.0.0'
-    roomVersion = '2.2.0-alpha01'
+    roomVersion = '2.1.0-alpha01'
     pagingVersion = '2.1.0'
     retrofitVersion = "2.3.0"
     okhttpLoggingInterceptorVersion = "3.9.0"
+    supportLibVersion = '1.0.0'
 }

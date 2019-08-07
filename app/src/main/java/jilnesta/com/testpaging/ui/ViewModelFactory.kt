@@ -14,16 +14,22 @@
  * limitations under the License.
  */
 
-package jilnesta.com.testpaging.model
+package jilnesta.com.testpaging.ui
 
-import androidx.lifecycle.LiveData
-import androidx.paging.PagedList
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import jilnesta.com.testpaging.data.GithubRepository
 
 /**
- * RepoSearchResult from a search, which contains LiveData<List<Repo>> holding query data,
- * and a LiveData<String> of network error state.
+ * Factory for ViewModels
  */
-data class RepoSearchResult(
-        val data: LiveData<PagedList<Repo>>,
-        val networkErrors: LiveData<String>
-)
+class ViewModelFactory(private val repository: GithubRepository) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(SearchRepositoriesViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return SearchRepositoriesViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
